@@ -1,0 +1,48 @@
+<nz-card nzTitle="Product Details" class="card">
+    <nz-table
+      #filterTable
+      [nzData]="listOfData"
+      [nzPageSize]="5"
+      nzTableLayout="fixed"
+      [nzScroll]="{ y: '240px' }"
+    >
+      <thead>
+        <tr>
+          <th
+            *ngFor="let column of listOfColumns"
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzSortDirections]="column.sortDirections"
+          >
+            {{ column.name }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of filterTable.data">
+          <td>{{ data.title }}</td>
+          <td>
+            {{ data.description.substring(0, 10) + "..." }}
+            <a href="javascript:void(0)" (click)="hanldeText(data.description)"
+              >Show More</a
+            >
+          </td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.discountPercentage }}</td>
+          <td>{{ data.brand }}</td>
+          <td>{{ data.category }}</td>
+          <td>Need to show image thumbnail</td>
+          <td>
+            <button
+              mat-raised-button
+              [disabled]="sharedService.selectedProductsObj[data.id]"
+              (click)="handleCompare(data)"
+            >
+              Compare
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+  

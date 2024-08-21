@@ -1,0 +1,29 @@
+.content-body {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+
+.header {
+    display: flex;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+  }
+  
+  .header-item, .cell {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .row {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .row:last-child {
+    border-bottom: none;
+  }

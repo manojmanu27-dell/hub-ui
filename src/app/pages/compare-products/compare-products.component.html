@@ -1,0 +1,39 @@
+<nz-card nzTitle="Compare Products" class="card"  [nzExtra]="extraTemplate">
+  <nz-table #basicTable [nzData]="rows" *ngIf="comparedProducts.length > 0;else elseBlock">
+    <thead>
+      <tr>
+        <th>-</th>
+        @for (item of comparedProducts; track $index) {
+        <th (click)="modifySelectedProducts($index)">
+          <button mat-button color="warn">Deselect</button>
+        </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of basicTable.data; track data) {
+      <tr>
+        <td>{{ data }}</td>
+        <td *ngIf="0 < comparedProducts.length">
+          {{ comparedProducts[0][tempObj[data]] }}
+        </td>
+        <td *ngIf="1 < comparedProducts.length">
+          {{ comparedProducts[1][tempObj[data]] }}
+        </td>
+        <td *ngIf="2 < comparedProducts.length">
+          {{ comparedProducts[2][tempObj[data]] }}
+        </td>
+        <td *ngIf="3 < comparedProducts.length">
+          {{ comparedProducts[3][tempObj[data]] }}
+        </td>
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+  <ng-template #extraTemplate>
+    <a href="javascript:void(0)" (click)="handleAddToCompare()">Add More To Compare</a>
+  </ng-template>
+  <ng-template #elseBlock>
+      <h3>No Items added <a href="javascript:void(0)" (click)="handleAddToCompare()">Click Here</a> to compare</h3>
+  </ng-template>
+</nz-card>
